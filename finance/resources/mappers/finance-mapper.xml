@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="financeMapper">
+
+	<resultMap type="Kospi" id="financeResultSet">
+		<id property="date" column="DATES"/>
+	    <result property="personal" column="PERSONAL"/>
+	    <result property="institutions" column="INSTITUTIONS"/>
+	    <result property="foreigner" column="FOREIGNER"/> 
+	    <result property="fiInvestment" column="FI_INVESTMENT"/>
+	    <result property="insurance" column="INSURANCE"/>
+	    <result property="equity" column="EQUITY"/>
+	    <result property="etc" column="ETC"/>
+	    <result property="bank" column="BANK"/>
+	    <result property="pensionFund" column="PENSION_FUND"/>
+		
+	</resultMap>
+	
+	<select id="getListCount" resultType="_int">
+		SELECT 3
+		FROM DUAL
+	</select>
+	<!-- 
+	<select id="getBoardList" resultMap="financeResultSet">
+		SELECT *
+		FROM BOARD
+		ORDER BY BID DESC
+	</select>	
+	
+	<insert id="insertBoard" parameterType="Finance">
+		INSERT INTO BOARD VALUES(
+			SEQ_BID.NEXTVAL
+			,#{bTitle}
+			,#{bWriter}
+			,#{bContent}
+			,#{originalFileName}
+			,#{renameFileName}
+			,DEFAULT
+			,SYSDATE
+			,SYSDATE
+			,DEFAULT			
+		)
+		
+	</insert>
+	자료형에 대한 설명은 mybatis에 맴퍼설정에 보면 타입별로 어떻게 작성하는지 나와있다.
+	<update id="updateCount" parameterType="int">
+		UPDATE BOARD
+		SET BCOUNT = BCOUNT + 1
+		WHERE BID = #{bId}
+	</update>
+	
+	<select id="selectOne" parameterType="int" resultMap="financeResultSet">
+		SELECT *
+		FROM BOARD
+		WHERE BID = #{bId}
+			AND B_STATUS = 'Y'
+	</select>
+	
+	<update id="updateBoard" parameterType="Finance">
+		UPDATE BOARD
+		SET BTITLE=#{bTitle}
+			, BCONTENT=#{bContent}
+			, ORIGINAL_FILENAME=#{originalFileName}
+			, RENAME_FILENAME=#{renameFileName}
+			, B_MODIFY_DATE=SYSDATE
+		WHERE BID=#{bId}
+	</update>
+	
+	기존의 사이트는 1~2달정도 정보 보관 후 삭제 한다.
+	<delete id="deleteBoard" parameterType="int">
+		DELETE FROM BOARD WHERE BID=#{bId} 
+	</delete>
+	
+	<select id="selectTopList" resultMap="financeResultSet">
+	쿼리에서 <>를 사용할때는 반드시 CDATA를 사용해 주자
+	<![CDATA[	
+		SELECT *
+		FROM (SELECT * 
+				FROM BOARD 
+				ORDER BY BCOUNT DESC)
+		WHERE ROWNUM <=5
+	]]>
+	</select>
+		 -->
+</mapper>

@@ -4,19 +4,14 @@
 	<settings>
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
-	<!--
+	
 	<typeAliases>
-		<typeAlias type="com.kh.realSpringProject.member.model.vo.Member" alias="Member"/>
-		<typeAlias type="com.kh.realSpringProject.notice.model.vo.Notice" alias="Notice"/>
-		<typeAlias type="com.kh.realSpringProject.board.model.vo.Board" alias="Board"/>
-		<typeAlias type="com.kh.realSpringProject.board.model.vo.Reply" alias="Reply"/>
+		<typeAlias type="com.test.finance.model.vo.Kospi" alias="Kospi"/>
 	</typeAliases>
 	
 	
 	<mappers>
-		<mapper resource="/mappers/member-mapper.xml"/>
-		<mapper resource="/mappers/notice-mapper.xml"/>	
-		<mapper resource="/mappers/board-mapper.xml"/>		
+		<mapper resource="/mappers/finance-mapper.xml"/>		
 	</mappers>
-	-->
+
 </configuration>
