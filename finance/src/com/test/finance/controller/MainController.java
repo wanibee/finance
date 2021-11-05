@@ -35,21 +35,18 @@ public class MainController {
 	@RequestMapping("crawling.do")
 	public ModelAndView crawlingList(ModelAndView mv, @RequestParam(value="page", required=false) Integer page) {
 		
-		//int pageCount = pageCount();
 		//int a = fService.getListCount();
-		//System.out.println("페이지 카운트 : " + pageCount);
 		
-		//ArrayList<Kospi> KList = crawling(pageCount);
-		ArrayList<Kospi> KList = crawling(1);
+		ArrayList<Kospi> KList = crawling();
 		mv.setViewName("home");
 		
 		return mv;
 	}
 	
-	 private ArrayList<Kospi> crawling(int pageCount) {
-		for(int i = 1; i <= pageCount; i++) {
-			
-		}
+	 private ArrayList<Kospi> crawling() {
+		
+		ArrayList<Kospi> kospiList = new ArrayList();
+		
 		try {
 			// 페이지 수 카운트 
 			String url1 = "https://finance.naver.com/sise/investorDealTrendDay.naver?bizdate=20211105&sosok=&page=1";
@@ -60,10 +57,10 @@ public class MainController {
 			int length = lastPage.length();
 			String page = lastPage.substring(a, length); 
 			
-			pageCount = Integer.parseInt(page);	
+			int pageCount = Integer.parseInt(page);	
 			
 			// 데이터 크롤링
-			ArrayList<Kospi> kospiList = new ArrayList();
+			//for(int i = 1 ; i <= pageCount ; i++) {
 			for(int i = 1 ; i <= 3 ; i++) {
 				String url = "https://finance.naver.com/sise/investorDealTrendDay.naver?bizdate=20211105&sosok=&page=";
 				url = url + i;
@@ -82,8 +79,13 @@ public class MainController {
 							oneList.add(elem2.text());
 						}
 						
+						String date = "20"+oneList.get(0);
+						date = date.replace(".", "");
+						
 						Kospi ko = new Kospi();
-						ko.setDate(oneList.get(0));
+						
+						
+						ko.setDate(date);
 						ko.setPersonal(oneList.get(1));
 						ko.setForeigner(oneList.get(2));
 						ko.setInstitutions(oneList.get(3));
@@ -109,27 +111,9 @@ public class MainController {
 			e.printStackTrace();
 		}
 		 
-		return null;
+		return kospiList;
 	}
 
-	 private int pageCount(){
-		 int pageCount = 0;
-		try {
-			String url = "https://finance.naver.com/sise/investorDealTrendDay.naver?bizdate=20211105&sosok=&page=1";
-			Document doc = Jsoup.connect(url).get();
-			
-			String lastPage = doc.select(".pgRR a").attr("href");
-			int a = lastPage.indexOf("page") + 5;
-			int length = lastPage.length();
-			String page = lastPage.substring(a, length); 
-			
-			pageCount = Integer.parseInt(page);		
-		} catch (Exception e) {
-			e.printStackTrace();
-			logger.debug(e.toString());
-		}
-		return pageCount;
-	}
 	 
 	 
 }
