@@ -3,16 +3,17 @@
 <mapper namespace="financeMapper">
 
 	<resultMap type="Kospi" id="financeResultSet">
-		<id property="date" column="DATES"/>
-	    <result property="personal" column="PERSONAL"/>
+		<id property="date" 			column="DATES"/>
+	    <result property="personal" 	column="PERSONAL"/>
+	    <result property="foreigner" 	column="FOREIGNER"/> 
 	    <result property="institutions" column="INSTITUTIONS"/>
-	    <result property="foreigner" column="FOREIGNER"/> 
 	    <result property="fiInvestment" column="FI_INVESTMENT"/>
-	    <result property="insurance" column="INSURANCE"/>
-	    <result property="equity" column="EQUITY"/>
-	    <result property="etc" column="ETC"/>
-	    <result property="bank" column="BANK"/>
-	    <result property="pensionFund" column="PENSION_FUND"/>
+	    <result property="insurance" 	column="INSURANCE"/>
+	    <result property="equity" 		column="EQUITY"/>
+	    <result property="bank"			column="BANK"/>
+	    <result property="etcF" 		column="ETC_F"/>
+	    <result property="pensionFund" 	column="PENSION_FUND"/>
+	    <result property="etcC" 		column="ETC_C"/>
 		
 	</resultMap>
 	
